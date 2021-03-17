@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-11-06 13:15:57
- * @modify date 2021-03-09 16:28:34
+ * @modify date 2021-03-17 10:16:55
  * @desc [Contact page]
  */
 import React, { Component } from "react";
@@ -13,7 +13,7 @@ import emailjs from "emailjs-com";
 /**
  * custom component insert
  */
-import HeaderImage from "../components/HeaderImage";
+//import HeaderImage from "../components/HeaderImage";
 // google map
 import GoogleMap from "../components/gMap";
 
@@ -107,7 +107,7 @@ class Contact extends Component {
     } = this.props;
     return (
       <section className="bg-light mt-0 mb-0">
-        <HeaderImage />
+        {/* <HeaderImage /> */}
 
         <div className="container">
           <div className="row no-gutters slider-text d-flex align-itemd-end justify-content-center">

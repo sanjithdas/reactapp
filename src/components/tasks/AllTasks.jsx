@@ -13,12 +13,20 @@ import { connect } from "react-redux";
 // pro types
 import PropTypes from "prop-types";
 
+// toast message - from react toastify
+import {ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
+
+
 /**
  * custom component insert
  */
 import { getTasks } from "../../actions/taskActions";
 
 import Task from "../../components/tasks/Task";
+
+import CompletedIcon from "../../images/completed1.jpg"
+import NotCompletedIcon from "../../images/pending.jpg"
 
 class AllTasks extends Component {
   componentDidMount() {
@@ -37,12 +45,12 @@ class AllTasks extends Component {
 
     return (
       <section className="ftco-section bg-light ftco-room">
+        
         <div className="container-fluid ">
           <div>
             <Fragment>
               {[info].map((task) => (
-                // console.log(task)
-                <Task singletask={task} key={task} user={user} />
+                  <Task singletask={task} key={task} user={user} completedIcon = {CompletedIcon} notCompletedIcon= {NotCompletedIcon} />
               ))}
             </Fragment>
           </div>
@@ -58,6 +66,7 @@ AllTasks.propTypes = {
   //shortcut ptfr and ptar
   getTasks: PropTypes.func.isRequired,
   // tasks: PropTypes.Object.isRequired,
+   
 };
 
 // map state to props

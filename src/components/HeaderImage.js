@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-22 15:38:29
- * @modify date 2021-03-03 07:04:38
+ * @modify date 2021-03-17 11:39:22
  * @desc [Component for Header Images]
  */
 

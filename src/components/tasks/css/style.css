@@ -80,6 +80,7 @@ body {
 }
 
 .title--input {
+  border: 2px solid red;
   display: block;
   width: 100%;
   padding: 0.875rem 1.375rem;
@@ -247,6 +248,7 @@ body {
 }
 
 .form-check {
+  border: 2px solid red;
   position: relative;
   display: block;
   margin-top: 10px;
@@ -520,4 +522,8 @@ a.btn {
 .error--message > .child2 {
   width: 40%;
   display: flex;
+}
+
+.disabled-link {
+  pointer-events: none;
 }

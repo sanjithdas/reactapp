@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2021-03-09 10:42:22
- * @modify date 2021-03-09 14:01:34
+ * @modify date 2021-03-18 09:47:26
  * @desc [description]
  */
 
@@ -20,6 +20,9 @@ import { Provider } from "react-redux";
 import "./css/style.css";
 import "bootstrap/dist/css/bootstrap.css";
 
+// react toasify - flash message
+
+
 // import store - acces the global store (state) object
 import store from "./store";
 
@@ -36,10 +39,7 @@ import {
   faLock,
 } from "@fortawesome/free-solid-svg-icons";
 
-/**
- * import required component
- * Home , Login , Rooms , About , Create room (admin)
- */
+  
 
 import Home from "./pages/home";
 import Login from "../src/components/Login";
@@ -88,9 +88,12 @@ function App() {
   );
   return (
     <Provider store={store}>
+      
       <Router>
+      
         <NavbarHeader />
         <Switch>
+        
           <Route exact path="/" component={Home} />
           <AuthRoute exact path="/login" component={Login} />
           <Route exact path="/logout" component={Logout} />

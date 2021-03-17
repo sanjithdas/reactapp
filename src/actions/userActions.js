@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-11-06 12:15:37
- * @modify date 2021-03-09 15:56:05
+ * @modify date 2021-03-17 09:47:50
  * @desc [User Action - login , Logout , SIgnup , setAuthorizationHeader]
  */
 import {
@@ -20,9 +20,7 @@ export const loginUser = (userData, history) => async (dispatch) => {
   dispatch({ type: LOADING_UI });
   try {
     axios.post("http://localhost:8000/api/login", userData).then((res) => {
-      console.log(res.data.data.name);
-      setAuthorizationHeader(res.data.token);
-      setUserName(res.data.data.name);
+      
       if (res.data.status === "failed") {
         dispatch({ type: SET_UNAUTHENTICATED, payload: res.data });
         dispatch({ type: SET_ERRORS, payload: res.data });
@@ -34,6 +32,11 @@ export const loginUser = (userData, history) => async (dispatch) => {
         dispatch({ type: SET_ERRORS, payload: res.data });
         return;
       }
+      
+      console.log(res);
+      
+      setAuthorizationHeader(res.data.token);
+      setUserName(res.data.data.name);
 
       dispatch({ type: CLEAR_ERRORS });
       dispatch({

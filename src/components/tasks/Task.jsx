@@ -8,7 +8,11 @@
 
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.css";
-import "../tasks/css/style.css";
+import "./css/task.css";
+
+// react toastify - flash message
+import { toast } from 'react-toastify';
+
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import {
@@ -21,7 +25,7 @@ import {
 import _map from "lodash/map";
 import Joi from "joi";
 import PropTypes from "prop-types";
-
+//import {CompletedIcon} from "../../images/completed1.jpg"
 class Task extends Component {
   constructor() {
     super();
@@ -98,6 +102,7 @@ class Task extends Component {
     if (token) {
       this.props.addTask(token, newTask);
       this.props.getTasks(token);
+      toast("Task created successfully")
     }
   };
 
@@ -112,16 +117,13 @@ class Task extends Component {
     const token = localStorage.FBIdToken;
     this.props.setTaskCompleted(event.target.value, token);
     console.log(this.props.task.completedTask);
-    // const {
-    //   task: { data },
-    // } = this.props;
     this.props.getTasks(token);
   };
 
   render() {
-    let { singletask, user } = this.props;
+    let { singletask, user , completedIcon ,notCompletedIcon } = this.props;
     
-    // [singletask].map((t) => console.log(t));
+    console.log(completedIcon);
 
     let name = "";
     _map(singletask, (s) => (name = s.name));
@@ -134,134 +136,145 @@ class Task extends Component {
     const { errors } = this.state;
 
     return (
-      <div className="page-content page-container" id="page-content">
-        <div className="padding">
-          <div className="row container d-flex justify-content-center">
-            <div className="col-md-12">
-              <div className="card px-3">
-                <div className="card-body">
-                  <h4 className="card-title">Todo list for {user}</h4>
-                  {singletask ? "" : "No task found !! create some task "}
-                  <form className="" onSubmit={this.handleSubmit} noValidate>
-                    <div className=" d-flex">
-                      {" "}
-                      <input
-                        type="text"
-                        className="title--input    todo-list-input"
-                        placeholder="Enter the title"
-                        value={title && title}
-                        onChange={this.onChange}
-                        error={errors && errors.title}
-                        name="title"
-                      />{" "}
-                      <textarea
-                        className="form-control todo-list-input"
-                        placeholder="What do you need to do today?"
-                        value={description}
-                        onChange={this.onChange}
-                        error={errors && errors.description}
-                        name="description"
-                      ></textarea>{" "}
-                      <button
-                        type="submit"
-                        className={
-                          "add btn btn-primary font-weight-bold todo-list-add-btn"
-                        }
-                        disabled={!authenticated}
-                      >
-                        Add
-                      </button>{" "}
-                    </div>
-
-                    <div className="error--message">
-                      <div className="child2">
-                        {errors && errors.title && (
-                          <small className="text-danger float-right p-2">
-                            {errors.title}
-                          </small>
-                        )}
-                      </div>
-                      <div className="child1">
-                        {errors && errors.description && (
-                          <small className="text-danger float-right p-2">
-                            {errors.description}
-                          </small>
-                        )}
-                      </div>
-                    </div>
-                  </form>
-
-                  <div className="list-wrapper">
-                    <ul className="d-flex flex-column-reverse todo-list">
-                      {this.props.singletask &&
-                        singletask.map((t) => (
-                          <li key={t.id}>
-                            <div className="form-check">
-                              {" "}
-                              <label className="form-check-label">
-                                {" "}
-                                <input
-                                  className="checkbox"
-                                  type="checkbox"
-                                  id={t.id}
-                                  value={t.id}
-                                  onChange={this.handleCompleteTask}
-                                  checked={t.completed}
-                                />
-                                {t.title} <i className="input-helper"></i>
-                              </label>{" "}
-                            </div>{" "}
-                            <div className="btn--edit">
-                              <Link
-                                to={`task/view/${t.id}`}
-                                className="btn-small m-1 btn btn-primary a-btn-slide-text"
-                              >
-                                <span
-                                  className="glyphicon glyphicon-eye-open"
-                                  aria-hidden="true"
-                                ></span>
-                                <span>
-                                  <strong>View</strong>
-                                </span>
-                              </Link>
-                              <Link
-                                to={`task/edit/${t.id}`}
-                                className="btn-right btn btn-primary a-btn-slide-text btn-small m-1"
-                              >
-                                <span
-                                  className="glyphicon glyphicon-edit"
-                                  aria-hidden="true"
-                                ></span>
-                                <span>
-                                  <strong>Edit</strong>
-                                </span>
-                              </Link>
-
-                              <button
-                                className="btn btn-primary a-btn-slide-text btn-small m-1"
-                                onClick={() => this.handleDelete(t.id)}
-                              >
-                                <span
-                                  className="glyphicon glyphicon-remove"
-                                  aria-hidden="true"
-                                ></span>
-                                <span>
-                                  <strong>Delete</strong>
-                                </span>
-                              </button>
-
-                              {/* <i className="remove mdi mdi-close-circle-outline "></i> */}
-                            </div>
-                          </li>
-                        ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+     <>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-9">
+      <div className="card">
+        <div className="card-body">
+        <h4 className="card-title">Todo list for {user}</h4>
         </div>
       </div>
+    </div>
+  </div>
+  <form className="" onSubmit={this.handleSubmit} noValidate>
+  <div class="row" >
+    <div class="col-sm-12 col-md-4 ">
+      
+       <input
+              type="text"
+              className=" form-control title--input  todo-list-input "
+              placeholder="Enter the title"
+              value={title && title}
+              onChange={this.onChange}
+              name="title"
+        /> 
+    </div>
+
+    <div className="col-sm-12 col-md-8">
+
+      <div className="row">
+        <div className="col-sm-12 col-md-6">
+          <textarea
+            className="form-control title--input"
+            placeholder="What do you need to do today?"
+            value={description}
+            onChange={this.onChange}
+            error={errors && errors.description}
+            name="description"
+          ></textarea> {" "}
+        </div>
+        <div className="col-sm-12 col-md-4">
+          <button
+              type="submit"
+              className={
+                "add btn btn-primary font-weight-bold todo-list-add-btn"
+              }
+              disabled={!authenticated}
+            >
+              Add
+            </button>{" "}
+              <div></div>
+        </div>
+      </div>
+      
+    </div>
+ 
+  </div> 
+  <div class="row">
+        <div class="col-sm-12 col-md-4 ">
+        {errors && errors.title && (
+            <small className="text-danger">
+              {errors.title}
+            </small>
+          )}
+        </div>
+        <div class="col-sm-12 col-md-8 ">
+        {errors && errors.description && (
+            <small className="text-danger">
+              {errors.description}
+            </small>
+          )}
+        </div>
+      </div>   
+  </form>
+  {this.props.singletask &&
+                        singletask.map((t) => (
+  <div class="row mb-3">
+    <div className="col-md-5  list-wrapper">
+    <div className="form-check">
+        {" "}
+        <label className="form-check-label">
+          {" "}
+          <input
+            className="checkbox"        
+            type="checkbox"
+            id={t.id}
+            value={t.id}
+            onChange={this.handleCompleteTask}
+            checked={t.completed}
+          />
+          {t.title} <i className="input-helper"></i>
+        </label>{" "}
+      </div>{" "}
+    </div>
+    
+    <div className="col-sm-12  col-md-7">
+      <Link to={`task/view/${t.id}`}
+            className="btn-small m-1 btn btn-primary link-class"
+          >
+            <span
+              className="glyphicon glyphicon-eye-open"
+              aria-hidden="true"
+            ></span>
+            <span>
+              <strong>View</strong>
+            </span>
+      </Link>
+
+      <Link  to={`task/edit/${t.id}`}
+      className={t.completed ? 
+         ("btn-right btn btn-primary a-btn-slide-text btn-small m-1 disabled-link link-class") : ("btn-right btn btn-primary a-btn-slide-text btn-small m-1 link-class") }
+      >
+      <span
+        className="glyphicon glyphicon-edit"
+        aria-hidden="true"
+      ></span>
+      <span>
+        <strong>Edit</strong>
+      </span>
+    </Link>
+        <Link
+        className="btn btn-primary   btn-small m-1 link-class"
+        onClick={() => this.handleDelete(t.id)}
+      >
+        <span
+          className="glyphicon glyphicon-remove"
+          aria-hidden="true"
+        ></span>
+        <span>
+          <strong>Delete</strong>
+        </span>
+      </Link>
+      <span>
+        <strong>{ t.completed ? (<img src={completedIcon} alt={t.title} style={{width:"50px"}} title={t.title} />): (<img src={notCompletedIcon} title={t.title} alt={t.title} style={{width:"40px" , height:"40px"}}/>) }</strong>
+      </span>
+    </div>
+  </div>
+  ))}
+
+</div>
+     </>
     );
   }
 }

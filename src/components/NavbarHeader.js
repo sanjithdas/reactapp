@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-21 21:28:35
- * @modify date 2021-03-08 21:18:30
+ * @modify date 2021-03-17 22:28:38
  * @desc [NavBar Component]
  */
 
@@ -35,6 +35,9 @@ const Styles = styled.div`
     &:hover {
       color: red;
     }
+   ..navbar-toggler-icon{
+     display: 2px solid red !important;
+   } 
   }
 `;
 
@@ -55,9 +58,9 @@ class NavbarHeader extends Component {
           className="text-success"
         >
           <Navbar.Brand href="/" className="htl-title-text"></Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar" />
+          <Navbar.Toggle aria-controls="basic-navbar ham-burger" />
 
-          <Navbar.Collapse id="basic-navbar-nav">
+          <Navbar.Collapse id="basic-navbar-nav ham-burger">
             <Nav className="ml-auto">
               <Nav.Item>
                 <Nav.Link href="/" className="text-white mr-2">
