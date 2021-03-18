@@ -18,7 +18,7 @@
   font-size: 0.875rem;
 }
 .text-area {
-  width: 100%;
+  width: 120%;
 }
 .form-control {
   border: 1px solid #f3f3f3;
@@ -174,4 +174,8 @@ input[type="checkbox"] {
 
 .disabled-link {
   pointer-events: none;
+}
+
+.d-flex {
+  display: flex !important;
 }

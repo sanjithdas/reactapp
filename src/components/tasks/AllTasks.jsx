@@ -14,8 +14,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 // toast message - from react toastify
-import {ToastContainer} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'
+
 
 
 /**
@@ -29,13 +28,14 @@ import CompletedIcon from "../../images/completed1.jpg"
 import NotCompletedIcon from "../../images/pending.jpg"
 
 class AllTasks extends Component {
-  componentDidMount() {
+   componentDidMount() {
     const token = localStorage.FBIdToken;
     if (token) {
       this.props.getTasks(token);
     }
   }
 
+  
   render() {
     const {
       tasks: { info },
@@ -44,16 +44,18 @@ class AllTasks extends Component {
     const user = localStorage.user;
 
     return (
-      <section className="ftco-section bg-light ftco-room">
-        
+      <section className="ftco-section bg-light ftco-room" 
+      >
         <div className="container-fluid ">
           <div>
-            <Fragment>
+            <Fragment style={{ backgroundColor : "red"}}>
               {[info].map((task) => (
                   <Task singletask={task} key={task} user={user} completedIcon = {CompletedIcon} notCompletedIcon= {NotCompletedIcon} />
               ))}
             </Fragment>
           </div>
+
+          
         </div>
       </section>
     );

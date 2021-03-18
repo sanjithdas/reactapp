@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2021-03-09 10:42:22
- * @modify date 2021-03-18 09:47:26
+ * @modify date 2021-03-18 20:11:29
  * @desc [description]
  */
 
@@ -11,6 +11,9 @@
  */
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+// react toasify - flash message
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 
 // import provider - will mak available to the  global state to all the components given in the provider tag.
 import { Provider } from "react-redux";
@@ -19,9 +22,6 @@ import { Provider } from "react-redux";
  */
 import "./css/style.css";
 import "bootstrap/dist/css/bootstrap.css";
-
-// react toasify - flash message
-
 
 // import store - acces the global store (state) object
 import store from "./store";
@@ -63,6 +63,7 @@ import Contact from "../src/pages/contact";
 import NotFound from "./pages/notfound";
 import EditTask from "./components/tasks/EditTask";
 
+ 
 /**
  * checking the user is logged in (token based checking)
  * if not login redirect to login page, else set the user
@@ -87,13 +88,13 @@ function App() {
     faLock
   );
   return (
+    <div>
+     {/* <ToastContainer /> */}
     <Provider store={store}>
-      
-      <Router>
-      
-        <NavbarHeader />
+       <Router>
+         
+         <NavbarHeader />
         <Switch>
-        
           <Route exact path="/" component={Home} />
           <AuthRoute exact path="/login" component={Login} />
           <Route exact path="/logout" component={Logout} />
@@ -109,6 +110,8 @@ function App() {
         <Footer />
       </Router>
     </Provider>
+   
+    </div>
   );
 }
 

@@ -2,13 +2,17 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-21 21:28:35
- * @modify date 2021-03-17 22:28:38
+ * @modify date 2021-03-18 11:29:49
  * @desc [NavBar Component]
  */
 
 // import react stuff
 import React, { Component } from "react";
 import { connect } from "react-redux";
+
+// import {ToastContainer} from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css'
+
 
 // import bootstrap Nav
 import { Nav, Navbar } from "react-bootstrap";
@@ -51,6 +55,7 @@ class NavbarHeader extends Component {
 
     return (
       <Styles>
+         
         <Navbar
           style={{ backgroundColor: "black", position: "sticky", fixed: "top" }}
           expand="lg"
@@ -112,6 +117,7 @@ class NavbarHeader extends Component {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
+       
       </Styles>
     );
   }

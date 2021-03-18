@@ -4,6 +4,9 @@
  * @create date 2021-03-05 07:54:26
  * @modify date 2021-03-05 07:54:26
  * @desc [Lising Task passing props from AllTask]
+ * 
+ * 
+ * 
  */
 
 import React, { Component } from "react";
@@ -39,8 +42,15 @@ class Task extends Component {
       name: "",
       user_id: "",
       isChecked: false,
+      rowId: "",
+      backgroundColor: 'green',
+      themeDefaultStyle:{
+        isThemeChanged: false,
+        backgroundColor: "green"
+      }
     };
   }
+
 
   schema = Joi.object({
     title: Joi.string().min(3),
@@ -113,18 +123,21 @@ class Task extends Component {
   };
 
   handleCompleteTask = (event, taskId) => {
+   
     event.preventDefault();
+    this.setState({ rowId: taskId });
     const token = localStorage.FBIdToken;
     this.props.setTaskCompleted(event.target.value, token);
     console.log(this.props.task.completedTask);
     this.props.getTasks(token);
   };
 
+ 
   render() {
+
+      
     let { singletask, user , completedIcon ,notCompletedIcon } = this.props;
     
-    console.log(completedIcon);
-
     let name = "";
     _map(singletask, (s) => (name = s.name));
 
@@ -137,18 +150,20 @@ class Task extends Component {
 
     return (
      <>
-<div class="container">
-  <div class="row">
-    <div class="col-sm-12 col-md-9">
+<div className="container ml-5">
+  
+  <div className="row">
+    <div className="col-sm-12 col-md-9">
       <div className="card">
         <div className="card-body">
         <h4 className="card-title">Todo list for {user}</h4>
+        {singletask ? "" : "No task found !! create some task "}
         </div>
       </div>
     </div>
   </div>
-  <form className="" onSubmit={this.handleSubmit} noValidate>
-  <div class="row" >
+  <form  onSubmit={this.handleSubmit} noValidate>
+  <div className="row" >
     <div class="col-sm-12 col-md-4 ">
       
        <input
@@ -191,7 +206,7 @@ class Task extends Component {
     </div>
  
   </div> 
-  <div class="row">
+  <div class="row" >
         <div class="col-sm-12 col-md-4 ">
         {errors && errors.title && (
             <small className="text-danger">
@@ -210,8 +225,10 @@ class Task extends Component {
   </form>
   {this.props.singletask &&
                         singletask.map((t) => (
-  <div class="row mb-3">
-    <div className="col-md-5  list-wrapper">
+  <div className="row mt-2 mb-3" id={t.id}
+   >
+    <div className="col-md-5 col-sm-12 col-xs-12" style = { this.state.rowId === t.id || t.completed ? {backgroundColor:"#51AD19"}: {} }
+       >
     <div className="form-check">
         {" "}
         <label className="form-check-label">
@@ -221,7 +238,7 @@ class Task extends Component {
             type="checkbox"
             id={t.id}
             value={t.id}
-            onChange={this.handleCompleteTask}
+            onChange={(event) => this.handleCompleteTask(event,t.id)}
             checked={t.completed}
           />
           {t.title} <i className="input-helper"></i>
@@ -229,7 +246,7 @@ class Task extends Component {
       </div>{" "}
     </div>
     
-    <div className="col-sm-12  col-md-7">
+    <div className="col-md-4 col-sm-12 col-xs-12" style = { this.state.rowId === t.id || t.completed ? {backgroundColor:"#51AD19"}: {} }>
       <Link to={`task/view/${t.id}`}
             className="btn-small m-1 btn btn-primary link-class"
           >
@@ -272,7 +289,10 @@ class Task extends Component {
     </div>
   </div>
   ))}
-
+      {/* <div>
+          <button  className="btn btn-primary m-1" onClick={this.handleThemeChange}>Change Backgroud</button>
+      </div> */}
+       
 </div>
      </>
     );

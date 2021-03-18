@@ -79,6 +79,11 @@ body {
   display: flex !important;
 }
 
+.flex-column-reverse {
+  flex-direction: column-reverse !important;
+}
+
+
 .title--input {
   border: 2px solid red;
   display: block;
@@ -465,9 +470,6 @@ input[type="checkbox"] {
   margin-bottom: 0;
 }
 
-.flex-column-reverse {
-  flex-direction: column-reverse !important;
-}
 
 .d-flex,
 .loader-demo-box,
