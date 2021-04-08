@@ -6,16 +6,16 @@ class ViewTask extends Component {
   componentDidMount() {
     const taskId = this.props.match.params.id;
     const token = localStorage.FBIdToken;
-    console.log(taskId, token);
+    // console.log(taskId, token);
     if (token) {
       this.props.getTask(taskId, token);
     }
   }
 
   render() {
-    console.log(this.props.task);
+   
     const { id, title, description, user_id } = this.props.task;
-    console.log(id, title, description);
+     
     return (
       <div>
         <table className="table">
@@ -41,13 +41,6 @@ class ViewTask extends Component {
   }
 }
 
-// ViewTask.propTypes = {
-//   //shortcut ptfr and ptar
-//   user: PropTypes.object.isRequired,
-//   UI: PropTypes.object.isRequired,
-//   getTask: PropTypes.func.isRequired,
-//   task: PropTypes.object.isRequired,
-// };
 
 // map state to props
 const mapStateToProps = (state) => ({

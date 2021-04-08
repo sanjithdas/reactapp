@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-22 15:38:29
- * @modify date 2021-03-17 11:39:22
+ * @modify date 2021-04-06 21:41:17
  * @desc [Component for Header Images]
  */
 
@@ -12,32 +12,12 @@ import "../css/custom.css";
 export class HeaderImage extends Component {
   render() {
     return (
-      <div className="">
-        <div className="container-wrap d-flex justify-content-end align-items-end">
-          {/* <a
-            href="https://www.youtube.com/watch?v=ism1XqnZJEg"
-            class="icon-video popup-vimeo d-flex justify-content-center align-items-center">
-            <span className="ion-ios-play play"></span>
-          </a> */}
-        </div>
-        {/* header-image section start */}
-        <section className="home-slider owl-carousel">
-          <div className="slider-item item-header-img1">
-            <div className="overlay"></div>
-            <div className="container">
-              <div className="row no-gutters slider-text align-items-center">
-                <div className="col-md-8 ftco-animate">
-                  <div className="text mb-5 pb-5">
-                    <h1 className="mb-3"> </h1>
-                    <h2> </h2>
-                  </div>
-                </div>
-              </div>
-            </div>
+        
+        <section>
+          <div className="item-header-img1">
           </div>
         </section>
-        {/* Header image section end */}
-      </div>
+        
     );
   }
 }

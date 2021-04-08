@@ -2,14 +2,14 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-21 21:28:35
- * @modify date 2021-03-18 11:29:49
+ * @modify date 2021-04-06 21:23:32
  * @desc [NavBar Component]
  */
 
 // import react stuff
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
+import Image from 'react-bootstrap/Image'
 // import {ToastContainer} from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css'
 
@@ -20,8 +20,9 @@ import { Nav, Navbar } from "react-bootstrap";
 // to style the componet
 import styled from "styled-components";
 
-// Decode token
-//import jwtDecode from "jwt-decode";
+// logo image 
+
+import logo from "../images/logo.png"
 
 const Styles = styled.div`
   .Navbar {
@@ -51,8 +52,7 @@ class NavbarHeader extends Component {
   };
   render() {
     const { authenticated } = this.props;
-    // const { user } = this.props.user;
-
+    
     return (
       <Styles>
          
@@ -62,22 +62,24 @@ class NavbarHeader extends Component {
           fixed="top"
           className="text-success"
         >
-          <Navbar.Brand href="/" className="htl-title-text"></Navbar.Brand>
+          <Navbar.Brand href="/" id="img_logo" className="img_logo htl-title-text">
+          <Image src={logo} className="logo"  alt="logo" title="logo"  style={{ width:"100px" , height: "70px" }} roundedCircle />
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar ham-burger" />
 
           <Navbar.Collapse id="basic-navbar-nav ham-burger">
             <Nav className="ml-auto">
               <Nav.Item>
-                <Nav.Link href="/" className="text-white mr-2">
+                <Nav.Link href="/"  className="home text-white mr-2">
                   Home
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link href="/rooms" className="text-white  mr-2"></Nav.Link>
+                
               </Nav.Item>
               {authenticated && (
-                <Nav.Item>
-                  <Nav.Link href="/tasks" className="text-white  mr-2">
+                <Nav.Item className="task">
+                  <Nav.Link href="/tasks" className="task text-white  mr-2">
                     Tasks
                   </Nav.Link>
                 </Nav.Item>

@@ -48,9 +48,9 @@ class AllTasks extends Component {
       >
         <div className="container-fluid ">
           <div>
-            <Fragment style={{ backgroundColor : "red"}}>
-              {[info].map((task) => (
-                  <Task singletask={task} key={task} user={user} completedIcon = {CompletedIcon} notCompletedIcon= {NotCompletedIcon} />
+            <Fragment>
+              {[info].map((task,index) => (
+                  <Task singletask={task} key={index} user={user} completedIcon = {CompletedIcon} notCompletedIcon= {NotCompletedIcon} />
               ))}
             </Fragment>
           </div>

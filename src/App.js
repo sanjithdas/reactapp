@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2021-03-09 10:42:22
- * @modify date 2021-03-18 20:11:29
+ * @modify date 2021-03-24 10:36:15
  * @desc [description]
  */
 
@@ -89,7 +89,7 @@ function App() {
   );
   return (
     <div>
-     {/* <ToastContainer /> */}
+     { <ToastContainer /> }
     <Provider store={store}>
        <Router>
          

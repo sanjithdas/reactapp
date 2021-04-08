@@ -28,7 +28,7 @@ import {
 import _map from "lodash/map";
 import Joi from "joi";
 import PropTypes from "prop-types";
-//import {CompletedIcon} from "../../images/completed1.jpg"
+
 class Task extends Component {
   constructor() {
     super();
@@ -63,7 +63,7 @@ class Task extends Component {
       abortEarly: false,
     });
     if (!result.error) return null;
-    console.log(result);
+     
     result.error.details.map((item) => {
       return (errors[item.path[0]] = item.message);
     });
@@ -112,7 +112,7 @@ class Task extends Component {
     if (token) {
       this.props.addTask(token, newTask);
       this.props.getTasks(token);
-      toast("Task created successfully")
+      toast.success("Task created successfully")
     }
   };
 
@@ -120,16 +120,17 @@ class Task extends Component {
     const token = localStorage.FBIdToken;
     this.props.deleteTask(id, token);
     this.props.getTasks(token);
+    toast.success("Task deleted successfully")
   };
 
-  handleCompleteTask = (event, taskId) => {
+  handleCompleteTask = (event, taskId, title) => {
    
     event.preventDefault();
     this.setState({ rowId: taskId });
     const token = localStorage.FBIdToken;
     this.props.setTaskCompleted(event.target.value, token);
-    console.log(this.props.task.completedTask);
     this.props.getTasks(token);
+    toast.success(`Task '${title}' completed..`)
   };
 
  
@@ -164,7 +165,7 @@ class Task extends Component {
   </div>
   <form  onSubmit={this.handleSubmit} noValidate>
   <div className="row" >
-    <div class="col-sm-12 col-md-4 ">
+    <div className="col-sm-12 col-md-4 ">
       
        <input
               type="text"
@@ -206,15 +207,15 @@ class Task extends Component {
     </div>
  
   </div> 
-  <div class="row" >
-        <div class="col-sm-12 col-md-4 ">
+  <div className="row" >
+        <div className="col-sm-12 col-md-4 ">
         {errors && errors.title && (
             <small className="text-danger">
               {errors.title}
             </small>
           )}
         </div>
-        <div class="col-sm-12 col-md-8 ">
+        <div className="col-sm-12 col-md-8 ">
         {errors && errors.description && (
             <small className="text-danger">
               {errors.description}
@@ -224,8 +225,8 @@ class Task extends Component {
       </div>   
   </form>
   {this.props.singletask &&
-                        singletask.map((t) => (
-  <div className="row mt-2 mb-3" id={t.id}
+                        singletask.map((t, index) => (
+  <div className="row mt-2 mb-3" id={t.id} key={index}
    >
     <div className="col-md-5 col-sm-12 col-xs-12" style = { this.state.rowId === t.id || t.completed ? {backgroundColor:"#51AD19"}: {} }
        >
@@ -238,7 +239,7 @@ class Task extends Component {
             type="checkbox"
             id={t.id}
             value={t.id}
-            onChange={(event) => this.handleCompleteTask(event,t.id)}
+            onChange={(event) => this.handleCompleteTask(event,t.id, t.title)}
             checked={t.completed}
           />
           {t.title} <i className="input-helper"></i>
@@ -271,8 +272,8 @@ class Task extends Component {
         <strong>Edit</strong>
       </span>
     </Link>
-        <Link
-        className="btn btn-primary   btn-small m-1 link-class"
+        <Link to="/tasks"
+        className="btn btn-primary  btn-small m-1 link-class"
         onClick={() => this.handleDelete(t.id)}
       >
         <span
@@ -289,10 +290,7 @@ class Task extends Component {
     </div>
   </div>
   ))}
-      {/* <div>
-          <button  className="btn btn-primary m-1" onClick={this.handleThemeChange}>Change Backgroud</button>
-      </div> */}
-       
+   
 </div>
      </>
     );

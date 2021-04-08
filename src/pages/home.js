@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-22 16:35:39
- * @modify date 2021-03-06 23:37:01
+ * @modify date 2021-04-06 21:35:00
  * @desc [Home page,  included components - HeaderImage, Rooms , Blogs ]
  */
 import React from "react";
@@ -20,7 +20,7 @@ export const Home = () => {
           <div className="row justify-content-center mb-5 pb-3">
             <div className="heading-section text-center ">
               <span className="htl-title-text">Welcome </span>
-              <div className="item-header-img1"></div>
+              <div className="item-header-img1 mt-3"></div>
             </div>
             <HeaderImage />
           </div>

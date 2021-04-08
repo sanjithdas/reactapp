@@ -2,7 +2,7 @@
  * @author [Sanjith]
  * @email [sanjith.das@gmail.com]
  * @create date 2020-10-23 19:42:47
- * @modify date 2021-03-09 06:43:32
+ * @modify date 2021-04-07 12:17:35
  * @desc [Actions - dispatch actions here , calls the appropriate actions, contact the server]
  */
 import {
@@ -67,7 +67,7 @@ export const deleteTask = (taskid, token) => async (dispatch) => {
 //  */
 
 export const addTask = (token, task) => async (dispatch) => {
-  //console.log("task", task);
+  
   axios.defaults.headers.common["Authorization"] = token;
   const res = await axios.post(`http://localhost:8000/api/tasks`, task);
   dispatch({
@@ -90,7 +90,7 @@ export const updateTask = (token, task) => async (dispatch) => {
       payload: res.data,
     });
   } catch (error) {
-    console.log(error);
+   // console.log(error);
   }
 };
 
@@ -102,13 +102,13 @@ export const setTaskCompleted = (id, token) => async (dispatch) => {
       `http://localhost:8000/api/tasks/${id}`
       // task
     );
-    console.log(res);
+    
     dispatch({
       type: TASK_COMPLETED,
       payload: res.data,
     });
   } catch (error) {
-    console.log(error);
+   
     dispatch({
       type: TASK_NOT_COMPLETED,
       payload: error,
