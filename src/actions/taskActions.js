@@ -30,7 +30,7 @@ export const getTasks = (token) => async (dispatch) => {
   });
 };
 /**
- * get a room details with given id
+  
  * @param {*} id
  */
 
@@ -63,7 +63,7 @@ export const deleteTask = (taskid, token) => async (dispatch) => {
 
 // /**
 //  * create a new task
-//  * @param {} room
+ 
 //  */
 
 export const addTask = (token, task) => async (dispatch) => {
